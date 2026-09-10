@@ -1,11 +1,13 @@
 import streamlit as st
 from utils.db_connection import run_query, init_db
 from utils.queries import QUERIES
+from utils.theme import apply_theme, hero
 
 st.set_page_config(page_title="SQL Analytics", page_icon="🧮", layout="wide")
+apply_theme()
 init_db()
 
-st.title("🧮 SQL Queries & Analytics")
+hero("🧮 SQL Queries & Analytics", "Run the 25 practice queries, or write your own SELECT")
 
 mode = st.radio("Mode", ["Pick a practice question", "Write my own SQL"], horizontal=True)
 

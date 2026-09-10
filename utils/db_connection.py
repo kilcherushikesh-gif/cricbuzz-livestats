@@ -44,13 +44,24 @@ def run_action(sql: str, params: tuple = ()) -> int:
 
 
 def init_db():
-    """Create tables + load sample data if the DB doesn't exist yet."""
+    """Create tables (empty) if the DB doesn't exist yet. Does NOT load sample
+    data automatically anymore — call load_sample_data() yourself if you want
+    the dummy testing rows, or run scripts/fetch_real_data.py for real data."""
     if os.path.exists(DB_PATH):
         return
     conn = get_connection()
     base_dir = os.path.dirname(__file__)
     with open(os.path.join(base_dir, "..", "database", "schema.sql")) as f:
         conn.executescript(f.read())
+    conn.commit()
+    conn.close()
+
+
+def load_sample_data():
+    """Optional: load the small dummy dataset from database/seed_data.sql.
+    Only use this for quick testing — don't call it if you want real API data only."""
+    conn = get_connection()
+    base_dir = os.path.dirname(__file__)
     with open(os.path.join(base_dir, "..", "database", "seed_data.sql")) as f:
         conn.executescript(f.read())
     conn.commit()

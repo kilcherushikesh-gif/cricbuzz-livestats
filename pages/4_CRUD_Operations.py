@@ -1,10 +1,12 @@
 import streamlit as st
 from utils.db_connection import run_query, run_action, init_db
+from utils.theme import apply_theme, hero
 
 st.set_page_config(page_title="CRUD Operations", page_icon="⚙️", layout="wide")
+apply_theme()
 init_db()
 
-st.title("⚙️ CRUD Operations — Players")
+hero("⚙️ CRUD Operations", "Add, view, update or delete player records")
 
 tab_create, tab_read, tab_update, tab_delete = st.tabs(["➕ Create", "📖 Read", "✏️ Update", "🗑️ Delete"])
 

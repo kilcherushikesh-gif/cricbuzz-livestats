@@ -1,9 +1,11 @@
 import streamlit as st
 import pandas as pd
 from utils import api_utils
+from utils.theme import apply_theme, hero
 
 st.set_page_config(page_title="Player Stats", page_icon="📊", layout="wide")
-st.title("📊 Top Player Stats")
+apply_theme()
+hero("📊 Top Player Stats", "Top run-scorers, wicket-takers and more from the Cricbuzz API")
 
 stat_type = st.selectbox(
     "Choose a stat category",
