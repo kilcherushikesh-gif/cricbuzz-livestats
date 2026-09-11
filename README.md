@@ -20,7 +20,19 @@ An interactive multi-page cricket analytics dashboard powered by **22,000+ real 
 ---
 
 ## ✨ Features
+## 📸 Screenshots
 
+### 🏠 Home
+![Home](screenshots/home.png)
+
+### 🔍 Search
+![Search](screenshots/search.png)
+
+### 📊 Visualizations
+![Visualizations](screenshots/visualizations.png)
+
+### 📈 Analytics Overview
+![Analytics](screenshots/analytics.png)
 | Page | Description |
 |------|-------------|
 | 🏠 **Home** | KPI cards — Players, Matches, Teams, Venues, Runs, Wickets |
