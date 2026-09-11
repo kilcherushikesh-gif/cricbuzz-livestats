@@ -1,11 +1,11 @@
 import streamlit as st
 import pandas as pd
-from utils import api_utils
 from utils.theme import apply_theme, hero
+from utils import api_utils
+apply_theme()
 
 st.set_page_config(page_title="Player Stats", page_icon="📊", layout="wide")
-apply_theme()
-hero("📊 Top Player Stats", "Top run-scorers, wicket-takers and more from the Cricbuzz API")
+st.title("📊 Top Player Stats")
 
 stat_type = st.selectbox(
     "Choose a stat category",
@@ -18,12 +18,12 @@ if "error" in data:
     st.error(data["error"])
 else:
     rows = data.get("headers", [])
-    values = data.get("values", [])  # exact keys depend on the live API response shape
+    values = data.get("values", [])
     if values:
         try:
             df = pd.DataFrame([v.get("values", []) for v in values], columns=rows if rows else None)
             st.dataframe(df, use_container_width=True)
         except Exception:
-            st.json(data)  # fallback: show raw JSON if the shape differs
+            st.json(data)
     else:
         st.json(data)

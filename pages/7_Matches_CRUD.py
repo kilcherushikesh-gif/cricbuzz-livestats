@@ -89,7 +89,7 @@ with tab_read:
 
 with tab_update:
     st.subheader("Update a match")
-    df = run_query("SELECT match_id, match_desc FROM matches ORDER BY match_id DESC")
+    df = run_query("SELECT match_id, match_desc FROM matches ORDER BY match_date DESC")
     if df.empty:
         st.info("No matches yet.")
     else:
@@ -119,7 +119,7 @@ with tab_update:
 
 with tab_delete:
     st.subheader("Delete a match")
-    df = run_query("SELECT match_id, match_desc FROM matches ORDER BY match_id DESC")
+    df = run_query("SELECT match_id, match_desc FROM matches ORDER BY match_date DESC")
     if df.empty:
         st.info("No matches yet.")
     else:

@@ -92,7 +92,7 @@ with tab_read:
            JOIN matches m ON s.match_id = m.match_id
            JOIN players p ON s.player_id = p.player_id
            LEFT JOIN teams t ON s.team_id = t.team_id
-           ORDER BY s.stat_id DESC"""
+           ORDER BY m.match_date DESC, s.stat_id DESC"""
     )
     st.dataframe(df, use_container_width=True, hide_index=True)
     st.caption(f"{len(df)} score row(s) total")
@@ -104,7 +104,7 @@ with tab_update:
            FROM player_match_stats s
            JOIN matches m ON s.match_id = m.match_id
            JOIN players p ON s.player_id = p.player_id
-           ORDER BY s.stat_id DESC"""
+           ORDER BY m.match_date DESC, s.stat_id DESC"""
     )
     if df.empty:
         st.info("No score rows yet.")
@@ -149,7 +149,7 @@ with tab_delete:
            FROM player_match_stats s
            JOIN matches m ON s.match_id = m.match_id
            JOIN players p ON s.player_id = p.player_id
-           ORDER BY s.stat_id DESC"""
+           ORDER BY m.match_date DESC, s.stat_id DESC"""
     )
     if df.empty:
         st.info("No score rows yet.")

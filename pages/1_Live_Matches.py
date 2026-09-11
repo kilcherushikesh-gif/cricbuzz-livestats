@@ -1,10 +1,10 @@
 import streamlit as st
+from utils.theme import apply_theme
+apply_theme()
 from utils import api_utils
-from utils.theme import apply_theme, hero
 
 st.set_page_config(page_title="Live Matches", page_icon="🔴", layout="wide")
-apply_theme()
-hero("🔴 Live Matches", "Live, recent and upcoming matches straight from the Cricbuzz API")
+st.title("🔴 Live Matches")
 
 tab1, tab2, tab3 = st.tabs(["Live", "Recent", "Upcoming"])
 
@@ -30,6 +30,7 @@ def show_matches(data):
                 info = match.get("matchInfo", {})
                 team1 = info.get("team1", {}).get("teamName", "Team 1")
                 team2 = info.get("team2", {}).get("teamName", "Team 2")
+                status = match.get("matchScore", {})
                 with st.container(border=True):
                     st.write(f"**{team1} vs {team2}** — {info.get('matchDesc', '')}")
                     st.caption(info.get("status", ""))

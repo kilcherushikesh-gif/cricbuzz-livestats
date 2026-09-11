@@ -1,17 +1,18 @@
 import streamlit as st
 from utils.db_connection import run_query, init_db
 from utils.theme import apply_theme, hero
+apply_theme()
 
 st.set_page_config(page_title="Analytics Overview", page_icon="📈", layout="wide")
-apply_theme()
 init_db()
 
-hero("📈 Analytics Overview", "Quick KPIs and leaderboards from the local database")
+st.title("📈 Analytics Overview")
+st.caption("Quick KPIs and leaderboards from the local database.")
 
 total_players = run_query("SELECT COUNT(*) AS c FROM players")["c"][0]
 total_matches = run_query("SELECT COUNT(*) AS c FROM matches")["c"][0]
-total_teams = run_query("SELECT COUNT(*) AS c FROM teams")["c"][0]
-total_venues = run_query("SELECT COUNT(*) AS c FROM venues")["c"][0]
+total_teams   = run_query("SELECT COUNT(*) AS c FROM teams")["c"][0]
+total_venues  = run_query("SELECT COUNT(*) AS c FROM venues")["c"][0]
 
 k1, k2, k3, k4 = st.columns(4)
 k1.metric("Players", total_players)

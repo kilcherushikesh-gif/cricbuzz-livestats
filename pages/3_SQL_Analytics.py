@@ -1,13 +1,13 @@
 import streamlit as st
-from utils.db_connection import run_query, init_db
-from utils.queries import QUERIES
+from utils.db_connection import run_query, run_action, init_db
 from utils.theme import apply_theme, hero
+from utils.queries import QUERIES
+apply_theme()
 
 st.set_page_config(page_title="SQL Analytics", page_icon="🧮", layout="wide")
-apply_theme()
 init_db()
 
-hero("🧮 SQL Queries & Analytics", "Run the 25 practice queries, or write your own SELECT")
+st.title("🧮 SQL Queries & Analytics")
 
 mode = st.radio("Mode", ["Pick a practice question", "Write my own SQL"], horizontal=True)
 
@@ -20,6 +20,13 @@ if mode == "Pick a practice question":
             df = run_query(sql)
             st.dataframe(df, use_container_width=True)
             st.caption(f"{len(df)} row(s) returned")
+            if not df.empty:
+                st.download_button(
+                    "📤 Download as CSV",
+                    df.to_csv(index=False).encode("utf-8"),
+                    file_name="query_result.csv",
+                    mime="text/csv",
+                )
         except Exception as e:
             st.error(f"Query failed: {e}")
 else:
@@ -32,5 +39,12 @@ else:
                 df = run_query(sql)
                 st.dataframe(df, use_container_width=True)
                 st.caption(f"{len(df)} row(s) returned")
+                if not df.empty:
+                    st.download_button(
+                        "📤 Download as CSV",
+                        df.to_csv(index=False).encode("utf-8"),
+                        file_name="query_result.csv",
+                        mime="text/csv",
+                    )
             except Exception as e:
                 st.error(f"Query failed: {e}")
