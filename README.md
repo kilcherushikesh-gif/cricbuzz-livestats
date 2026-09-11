@@ -84,5 +84,8 @@ streamlit run Home.py
 ```
 
 ---
+## 👨‍💻 Author ##
+**Rushikesh Kilche**
+- GitHub: [@kilcherushikesh-gif](https://github.com/kilcherushikesh-gif)
 
 ## 📁 Project Structure
