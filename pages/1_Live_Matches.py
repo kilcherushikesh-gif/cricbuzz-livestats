@@ -35,10 +35,9 @@ def show_matches(data):
                     st.write(f"**{team1} vs {team2}** — {info.get('matchDesc', '')}")
                     st.caption(info.get("status", ""))
 
-
 with tab1:
     if st.button("🔄 Refresh live matches"):
-        st.cache_data.clear()
+        api_utils.get_live_matches.clear()  # sirf isi function ka cache clear karo
     show_matches(api_utils.get_live_matches())
 
 with tab2:

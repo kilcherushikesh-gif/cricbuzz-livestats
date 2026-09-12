@@ -3,143 +3,179 @@
 def apply_theme():
     st.markdown("""
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        
-        * { font-family: 'Poppins', sans-serif !important; }
-        
-        /* Main background */
-        .stApp { background: #0a0a0a !important; }
-        .main .block-container { background: #0a0a0a !important; }
-        
-        /* Sidebar */
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+        * { font-family: 'Inter', sans-serif !important; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif !important; }
+
+        /* Flat solid background — no stripes, no noise */
+        .stApp { background: #0A1F16 !important; }
+        .main .block-container { background: transparent !important; padding-top: 2rem !important; }
+
+        /* Sidebar — clean, single solid border, no dashes */
         section[data-testid="stSidebar"] {
-            background: #111111 !important;
-            border-right: 2px solid #00ff88 !important;
+            background: #0D2419 !important;
+            border-right: 1px solid #1E3D2B !important;
         }
         section[data-testid="stSidebar"] a {
-            color: #ffffff !important;
-            font-size: 1rem !important;
-            padding: 8px 0 !important;
+            color: #C9D6C7 !important;
+            font-size: 0.95rem !important;
+            padding: 8px 10px !important;
+            border-radius: 6px !important;
         }
         section[data-testid="stSidebar"] a:hover {
-            color: #00ff88 !important;
+            color: #F4F1E8 !important;
+            background: #14301F !important;
         }
-        
-        /* All text */
-        h1, h2, h3, h4, h5, h6 { color: #ffffff !important; }
-        p, li, span, div { color: #cccccc !important; }
-        label { color: #aaaaaa !important; font-size: 0.85rem !important; }
-        
-        /* Metric cards */
+
+        /* Text */
+        h1, h2, h3, h4, h5, h6 { color: #F4F1E8 !important; }
+        p, li, span, div { color: #B9C7B8 !important; }
+        label { color: #8CA491 !important; font-size: 0.85rem !important; }
+
+        /* Metric cards — flat panel, single left accent bar, no busy borders */
         [data-testid="metric-container"] {
-            background: linear-gradient(135deg, #1a1a1a, #222222) !important;
-            border: 1px solid #00ff88 !important;
-            border-radius: 12px !important;
-            padding: 1rem !important;
-            box-shadow: 0 0 20px rgba(0,255,136,0.1) !important;
-        }
-        [data-testid="metric-container"] label { color: #00ff88 !important; }
-        [data-testid="metric-container"] [data-testid="stMetricValue"] {
-            color: #ffffff !important;
-            font-size: 2rem !important;
-            font-weight: 700 !important;
-        }
-        
-        /* Buttons */
-        .stButton > button {
-            background: linear-gradient(90deg, #00ff88, #00cc6a) !important;
-            color: #000000 !important;
+            background: #10281B !important;
             border: none !important;
-            border-radius: 8px !important;
-            font-weight: 700 !important;
-            padding: 0.5rem 2rem !important;
-            transition: all 0.3s !important;
+            border-left: 3px solid #E8C468 !important;
+            border-radius: 6px !important;
+            padding: 1rem 1.2rem !important;
+        }
+        [data-testid="metric-container"] label { color: #8CA491 !important; }
+        [data-testid="metric-container"] [data-testid="stMetricValue"] {
+            color: #F4F1E8 !important;
+            font-family: 'Space Grotesk', sans-serif !important;
+            font-size: 1.9rem !important;
+            font-weight: 600 !important;
+        }
+
+        /* Buttons — the one bright accent color, used sparingly */
+        .stButton > button {
+            background: #E14B3D !important;
+            color: #F4F1E8 !important;
+            border: none !important;
+            border-radius: 6px !important;
+            font-weight: 600 !important;
+            padding: 0.5rem 1.6rem !important;
+            transition: background 0.2s !important;
         }
         .stButton > button:hover {
-            transform: translateY(-2px) !important;
-            box-shadow: 0 8px 25px rgba(0,255,136,0.4) !important;
+            background: #C63A2E !important;
         }
-        
-        /* Input fields */
+
+        /* Inputs */
         input, textarea {
-            background: #1a1a1a !important;
-            color: #ffffff !important;
-            border: 1px solid #333333 !important;
-            border-radius: 8px !important;
+            background: #10281B !important;
+            color: #F4F1E8 !important;
+            border: 1px solid #234433 !important;
+            border-radius: 6px !important;
         }
-        input:focus { border-color: #00ff88 !important; }
-        input::placeholder { color: #555555 !important; }
-        
+        input:focus { border-color: #E8C468 !important; }
+        input::placeholder { color: #5C7864 !important; }
+
         /* Dropdowns */
         [data-baseweb="select"] > div {
-            background: #1a1a1a !important;
-            border: 1px solid #333333 !important;
-            border-radius: 8px !important;
-            color: #ffffff !important;
+            background: #10281B !important;
+            border: 1px solid #234433 !important;
+            border-radius: 6px !important;
+            color: #F4F1E8 !important;
         }
-        [data-baseweb="select"] span { color: #ffffff !important; }
-        [data-baseweb="popover"] { background: #1a1a1a !important; }
+        [data-baseweb="select"] span { color: #F4F1E8 !important; }
+        [data-baseweb="popover"] { background: #10281B !important; }
         [data-baseweb="popover"] li {
-            color: #ffffff !important;
-            background: #1a1a1a !important;
+            color: #F4F1E8 !important;
+            background: #10281B !important;
         }
         [data-baseweb="popover"] li:hover {
-            background: #00ff88 !important;
-            color: #000000 !important;
+            background: #1E3D2B !important;
+            color: #F4F1E8 !important;
         }
-        
-        /* Tabs */
+
+        /* Tabs — clean underline style instead of filled pill */
         .stTabs [data-baseweb="tab-list"] {
-            background: #111111 !important;
-            border-radius: 10px !important;
-            padding: 4px !important;
+            background: transparent !important;
+            border-bottom: 1px solid #1E3D2B !important;
+            gap: 4px !important;
         }
         .stTabs [data-baseweb="tab"] {
-            color: #888888 !important;
-            border-radius: 8px !important;
+            color: #8CA491 !important;
+            font-family: 'Space Grotesk', sans-serif !important;
+            font-weight: 500 !important;
+            background: transparent !important;
         }
         .stTabs [aria-selected="true"] {
-            background: #00ff88 !important;
-            color: #000000 !important;
-            font-weight: 700 !important;
+            color: #F4F1E8 !important;
+            border-bottom: 2px solid #E14B3D !important;
+            font-weight: 600 !important;
         }
-        
+
         /* Dataframe */
         .stDataFrame {
-            border: 1px solid #222222 !important;
-            border-radius: 10px !important;
+            border: 1px solid #1E3D2B !important;
+            border-radius: 8px !important;
         }
-        
-        /* Divider */
-        hr { border-color: #222222 !important; }
-        
-        /* Date input */
-        .stDateInput input { color: #ffffff !important; }
-        
-        /* Number input */
-        .stNumberInput input { color: #ffffff !important; }
-        
-        /* Form */
+
+        hr { border-color: #1E3D2B !important; }
+
+        .stDateInput input { color: #F4F1E8 !important; }
+        .stNumberInput input { color: #F4F1E8 !important; }
+
         [data-testid="stForm"] {
-            background: #111111 !important;
-            border: 1px solid #222222 !important;
-            border-radius: 12px !important;
+            background: #0D2419 !important;
+            border: 1px solid #1E3D2B !important;
+            border-radius: 10px !important;
             padding: 1.5rem !important;
+        }
+
+        /* Live pulse dot */
+        @keyframes pulse-ball {
+            0% { box-shadow: 0 0 0 0 rgba(225,75,61,0.55); }
+            70% { box-shadow: 0 0 0 9px rgba(225,75,61,0); }
+            100% { box-shadow: 0 0 0 0 rgba(225,75,61,0); }
+        }
+        .live-dot {
+            display: inline-block;
+            width: 9px; height: 9px;
+            background: #E14B3D;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse-ball 1.6s infinite;
         }
         </style>
     """, unsafe_allow_html=True)
 
+
 def hero(title, subtitle=""):
     st.markdown(f"""
         <div style='
-            background: linear-gradient(135deg, #0d1f0d 0%, #0a2a1a 50%, #0d1f0d 100%);
-            padding: 2.5rem 2rem;
-            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            background: #0D2419;
+            padding: 2.2rem 2rem;
+            border-radius: 10px;
             margin-bottom: 2rem;
-            border: 1px solid #00ff88;
-            box-shadow: 0 0 40px rgba(0,255,136,0.15);
+            border-left: 4px solid #E8C468;
         '>
-            <h1 style='color: #00ff88 !important; margin: 0; font-size: 2.5rem; font-weight: 700;'>{title}</h1>
-            <p style='color: #aaaaaa !important; margin: 0.5rem 0 0 0; font-size: 1rem;'>{subtitle}</p>
+            <h1 style='color: #F4F1E8 !important; margin: 0; font-size: 2.2rem; font-weight: 700; font-family: "Space Grotesk", sans-serif;'>{title}</h1>
+            <p style='color: #8CA491 !important; margin: 0.5rem 0 0 0; font-size: 0.95rem;'>{subtitle}</p>
+
+            <svg width="70" height="70" viewBox="0 0 150 150"
+                 style="position:absolute; right:24px; top:50%; transform:translateY(-50%); opacity:0.85;">
+                <g transform="rotate(-18 75 75)">
+                    <rect x="60" y="8" width="20" height="72" rx="9" fill="#E8C468"/>
+                    <rect x="66" y="80" width="8" height="38" rx="3" fill="#7a4a24"/>
+                    <rect x="63" y="116" width="14" height="10" rx="3" fill="#4a2e16"/>
+                </g>
+                <circle cx="115" cy="108" r="16" fill="#E14B3D"/>
+            </svg>
+        </div>
+    """, unsafe_allow_html=True)
+
+
+def live_badge(text="LIVE"):
+    st.markdown(f"""
+        <div style='display:flex; align-items:center; margin-bottom:0.5rem;'>
+            <span class='live-dot'></span>
+            <span style='color:#E14B3D; font-weight:600; font-family:"Space Grotesk", sans-serif; letter-spacing:0.5px;'>{text}</span>
         </div>
     """, unsafe_allow_html=True)
