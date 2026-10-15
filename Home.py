@@ -99,7 +99,7 @@ with st.container(horizontal=True):
 st.divider()
 
 # ── Top 5 Run Scorers & Wicket Takers ──
-col1, col2 = st.columns(2)
+col1, col2 = st.columns(2, wrap=True)
 
 with col1:
     st.subheader("🏆 Top 5 Run Scorers")

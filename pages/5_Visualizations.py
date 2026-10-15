@@ -10,6 +10,24 @@ init_db()
 
 st.title("📊 Cricket Visualizations")
 st.caption("Interactive charts built from the local database.")
+st.markdown(
+    """
+    <style>
+    @media (max-width: 640px) {
+        [data-testid="stMainBlockContainer"] {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        .js-plotly-plot .xtick text,
+        .js-plotly-plot .ytick text,
+        .js-plotly-plot .legend text {
+            font-size: 10px !important;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 matches = run_query(
     """SELECT m.match_id, m.match_date, m.match_format, t1.team_name AS team1,
@@ -31,7 +49,7 @@ if matches.empty and stats.empty:
     st.info("No data yet.")
     st.stop()
 
-col1, col2 = st.columns(2)
+col1, col2 = st.columns(2, wrap=True)
 
 with col1:
     st.subheader("🏆 Wins per team")
@@ -39,7 +57,7 @@ with col1:
         win_counts = matches["winner"].value_counts().reset_index()
         win_counts.columns = ["team", "wins"]
         fig = px.bar(win_counts, x="team", y="wins", color="team", title="Total Wins by Team")
-        st.plotly_chart(fig, width="stretch")
+        st.plotly_chart(fig, width="stretch", config={"responsive": True})
     else:
         st.info("No completed matches with a recorded winner yet.")
 
@@ -49,7 +67,7 @@ with col2:
         role_counts = players["playing_role"].value_counts().reset_index()
         role_counts.columns = ["role", "count"]
         fig = px.pie(role_counts, values="count", names="role", title="Playing Role Breakdown")
-        st.plotly_chart(fig, width="stretch")
+        st.plotly_chart(fig, width="stretch", config={"responsive": True})
 
 st.subheader("🏏 Top run scorers")
 if not stats.empty:
@@ -58,7 +76,7 @@ if not stats.empty:
         .sort_values("runs_scored", ascending=False).head(10)
     )
     fig = px.bar(top_runs, x="full_name", y="runs_scored", title="Top 10 Run Scorers")
-    st.plotly_chart(fig, width="stretch")
+    st.plotly_chart(fig, width="stretch", config={"responsive": True})
 
 st.subheader("🎯 Top wicket takers")
 if not stats.empty:
@@ -69,7 +87,7 @@ if not stats.empty:
     top_wickets = top_wickets[top_wickets["wickets_taken"] > 0]
     if not top_wickets.empty:
         fig = px.bar(top_wickets, x="full_name", y="wickets_taken", title="Top 10 Wicket Takers")
-        st.plotly_chart(fig, width="stretch")
+        st.plotly_chart(fig, width="stretch", config={"responsive": True})
     else:
         st.info("No bowling data yet.")
 
@@ -82,4 +100,4 @@ if not matches.empty:
             timeline, x="match_date", y="match_format",
             hover_data=["team1", "team2"], title="Matches Timeline",
         )
-        st.plotly_chart(fig, width="stretch")
+        st.plotly_chart(fig, width="stretch", config={"responsive": True})
