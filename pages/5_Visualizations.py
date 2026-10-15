@@ -39,7 +39,7 @@ with col1:
         win_counts = matches["winner"].value_counts().reset_index()
         win_counts.columns = ["team", "wins"]
         fig = px.bar(win_counts, x="team", y="wins", color="team", title="Total Wins by Team")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     else:
         st.info("No completed matches with a recorded winner yet.")
 
@@ -49,7 +49,7 @@ with col2:
         role_counts = players["playing_role"].value_counts().reset_index()
         role_counts.columns = ["role", "count"]
         fig = px.pie(role_counts, values="count", names="role", title="Playing Role Breakdown")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
 st.subheader("🏏 Top run scorers")
 if not stats.empty:
@@ -58,7 +58,7 @@ if not stats.empty:
         .sort_values("runs_scored", ascending=False).head(10)
     )
     fig = px.bar(top_runs, x="full_name", y="runs_scored", title="Top 10 Run Scorers")
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 st.subheader("🎯 Top wicket takers")
 if not stats.empty:
@@ -69,7 +69,7 @@ if not stats.empty:
     top_wickets = top_wickets[top_wickets["wickets_taken"] > 0]
     if not top_wickets.empty:
         fig = px.bar(top_wickets, x="full_name", y="wickets_taken", title="Top 10 Wicket Takers")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
     else:
         st.info("No bowling data yet.")
 
@@ -82,4 +82,4 @@ if not matches.empty:
             timeline, x="match_date", y="match_format",
             hover_data=["team1", "team2"], title="Matches Timeline",
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")

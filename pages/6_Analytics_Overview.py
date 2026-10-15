@@ -34,7 +34,7 @@ with col1:
            ORDER BY total_runs DESC
            LIMIT 10"""
     )
-    st.dataframe(df, use_container_width=True, hide_index=True)
+    st.dataframe(df, width="stretch", hide_index=True)
 
 with col2:
     st.subheader("🎯 Bowling leaderboard")
@@ -47,7 +47,7 @@ with col2:
            ORDER BY total_wickets DESC
            LIMIT 10"""
     )
-    st.dataframe(df, use_container_width=True, hide_index=True)
+    st.dataframe(df, width="stretch", hide_index=True)
 
 st.subheader("🏆 Team win tally")
 df = run_query(
@@ -55,4 +55,4 @@ df = run_query(
        FROM matches m JOIN teams t ON m.winning_team_id = t.team_id
        GROUP BY t.team_id ORDER BY wins DESC"""
 )
-st.dataframe(df, use_container_width=True, hide_index=True)
+st.dataframe(df, width="stretch", hide_index=True)
